@@ -1,0 +1,11 @@
+development:
+  driver: mymysql
+  open: tcp:localhost:3306*mboard/root/
+
+local:
+  driver: mymysql
+  open: tcp:localhost:3306*mboard/root/
+
+test:
+  driver: mymysql
+  open: tcp:localhost:3306*mboard_test/root/

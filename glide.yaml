@@ -1,0 +1,15 @@
+package: github.com/sambaiz/go-api-with-test
+import:
+- package: github.com/facebookgo/grace
+  subpackages:
+  - gracehttp
+- package: github.com/go-sql-driver/mysql
+- package: github.com/gocraft/dbr
+- package: github.com/golang/mock
+  subpackages:
+  - gomock
+- package: github.com/labstack/echo
+  subpackages:
+  - engine/standard
+  - middleware
+- package: github.com/kelseyhightower/envconfig
