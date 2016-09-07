@@ -27,7 +27,9 @@ func (m MessageImpl) GetMessages(limit uint64, offset uint64) ([]model.Message, 
 
 // Creates a message and returns it.
 func (m MessageImpl) CreateMessage(content string) (*model.Message, error) {
-	m.tx.Begin()
+	if err := m.tx.Begin(); err != nil{
+		return nil, err
+	}
 
 	defer m.tx.RollbackUnlessCommitted()
 

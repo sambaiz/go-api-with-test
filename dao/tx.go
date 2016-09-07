@@ -23,7 +23,7 @@ func NewTx(sess *dbr.Session) *TxImpl {
 }
 
 // Begin a transaction. If ever transaction has not finished, it fails.
-func (t TxImpl) Begin() error {
+func (t *TxImpl) Begin() error {
 	if t.tx != nil {
 		return errors.New("transaction is unfinished")
 	}
@@ -37,14 +37,17 @@ func (t TxImpl) Begin() error {
 }
 
 // Commit finishes the transaction.
-func (t TxImpl) Commit() error {
+func (t *TxImpl) Commit() error {
+	if t.tx == nil {
+		return errors.New("transaction is not began")
+	}
 	err := t.tx.Commit()
 	t.tx = nil
 	return err
 }
 
 // Rollsback the transaction unless it has already been committed. Useful to defer tx.RollbackUnlessCommitted()
-func (t TxImpl) RollbackUnlessCommitted() {
+func (t *TxImpl) RollbackUnlessCommitted() {
 	t.tx.RollbackUnlessCommitted()
 	t.tx = nil
 }

@@ -25,7 +25,7 @@ func NewMessage(messageService service.Message) *MessageImpl {
 
 // NewMessageWithSession returns Message instance.
 func NewMessageWithSession(sess *dbr.Session) *MessageImpl {
-	return &MessageImpl{messageService: service.NewMessage(*dao.NewTx(sess), *dao.NewMessage(sess))}
+	return &MessageImpl{messageService: service.NewMessage(dao.NewTx(sess), *dao.NewMessage(sess))}
 }
 
 // Get messages and responses it in json.
